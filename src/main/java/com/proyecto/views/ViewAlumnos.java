@@ -30,7 +30,7 @@ public class ViewAlumnos extends ViewMain {
     }
 
     public static void listarAlumnos() {
-        System.out.println("Lista de Clientes");
+        System.out.println("Lista de Alumnos");
         for (Alumnos alumno : serviceAlumnos.listar()) {
             alumno.imprimirAlumno();
             System.out.println();
@@ -38,7 +38,7 @@ public class ViewAlumnos extends ViewMain {
     }
 
     public static Alumnos buscarGetAlumno() {
-        System.out.println("Busqueda de cliente "); 
+        System.out.println("Busqueda de Alumno "); 
         scanner.nextLine();       
         System.out.print("Documento: ");
         String numDocumento = scanner.nextLine();

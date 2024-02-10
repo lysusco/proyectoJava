@@ -5,16 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-enum TipoDocumento {
-    CC,
-    TI
-}
-
-enum Sexo {
-    Femenino,
-    Masculino
-}
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

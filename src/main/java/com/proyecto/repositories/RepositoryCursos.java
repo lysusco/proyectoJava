@@ -9,7 +9,7 @@ public interface RepositoryCursos {
     
     List<Cursos> listar();
 
-    Cursos buscar();
+    Cursos buscar(String nomCurso);
     
     void crear(Cursos cursos);
     
