@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.proyecto.repositories.RepositoryDepartamentos;
 import com.proyecto.repositories.models.Departamentos;
+import com.proyecto.repositories.models.Profesores;
 import com.proyecto.utils.conexionpersistencia.conexionbdmysql.ConexionBDMysql;
 
 public class RepositoryDepartamentosMysqlImpl implements RepositoryDepartamentos{
@@ -68,11 +69,11 @@ public class RepositoryDepartamentosMysqlImpl implements RepositoryDepartamentos
 
     @Override
     public void editar(Departamentos departamentos) {
-        String sql = "UPDATE departamento SET nomDepartamento=? WHERE id=?";
+        String sql = "UPDATE departamento SET nomDepartamento=? WHERE id_departamento=?";
         try (Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
         stmt.setString(1, departamentos.getNomDepartamento());
-        stmt.setInt(2, departamentos.getId());
+        stmt.setInt(2, departamentos.getId_departamento());
         stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -82,8 +83,8 @@ public class RepositoryDepartamentosMysqlImpl implements RepositoryDepartamentos
     @Override
     public void eliminar(Departamentos departamentos) {
         try(Connection conn = getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM departamento WHERE id=?")){
-            stmt.setInt(1, departamentos.getId());
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM departamento WHERE id_departamento=?")){
+            stmt.setInt(1, departamentos.getId_departamento());
             stmt.executeUpdate();
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -92,9 +93,34 @@ public class RepositoryDepartamentosMysqlImpl implements RepositoryDepartamentos
 
     private Departamentos crearDepartamento(ResultSet rs) throws SQLException{
         Departamentos departamento = new Departamentos();
-        departamento.setId(rs.getInt("id"));
+        departamento.setId_departamento(rs.getInt("id_departamento"));
         departamento.setNomDepartamento(rs.getString("nomDepartamento"));
         return departamento;
     }
+
+    
+    @Override
+    public Departamentos obtenerDepartamentoPorProfesor(Profesores profesor) {
+        Departamentos departamento = null;
+        String sql = "SELECT d.id_departamento, d.nomDepartamento " +
+                     "FROM departamento d " +
+                     "JOIN profesor p ON d.id_departamento = p.id_departamento " +
+                     "WHERE p.id_profesor = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, profesor.getId_profesor()); // Suponiendo que tienes un método getId_profesor() en la clase Profesores
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    departamento = new Departamentos();
+                    departamento.setId_departamento(rs.getInt("id_departamento"));
+                    departamento.setNomDepartamento(rs.getString("nomDepartamento"));
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return departamento;
+    }
+    
     
 }

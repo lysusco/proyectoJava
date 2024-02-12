@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.proyecto.exceptiones.departamentosexceptions.DepartamentosNullException;
 import com.proyecto.repositories.models.Departamentos;
+import com.proyecto.repositories.models.Profesores;
 
 public interface ServiceDepartamentos {
     
@@ -16,4 +17,6 @@ public interface ServiceDepartamentos {
     void editar(Departamentos departamentos);
     
     void eliminar(Departamentos departamentos);
+
+    Departamentos obtenerDepartamentoPorProfesor(Profesores profesor);
 }

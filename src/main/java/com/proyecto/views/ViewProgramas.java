@@ -88,13 +88,18 @@ public class ViewProgramas extends ViewMain{
             System.out.println("Se presentó un problema y no se puedo eliminar el programa");
         }
     }
-    public static int mostrarMenu(){
-        System.out.println("###MENU PROGRAMAS###");
-        System.out.println("1. Crear programa");
-        System.out.println("2. Buscar programa");
-        System.out.println("3. Listar programas");
-        System.out.println("4. Eliminar programa");
-        System.out.println("5. Salir");
+    public static int mostrarMenu() {
+        System.out.println("\u001B[36m╔════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m║          MENU PROGRAMAS            ║\u001B[0m");
+        System.out.println("\u001B[36m╠════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[36m║ 1. Crear programa                 ║\u001B[0m");
+        System.out.println("\u001B[36m║ 2. Buscar programa                ║\u001B[0m");
+        System.out.println("\u001B[36m║ 3. Listar programas               ║\u001B[0m");
+        System.out.println("\u001B[36m║ 4. Eliminar programa              ║\u001B[0m");
+        System.out.println("\u001B[36m║ 5. Salir                          ║\u001B[0m");
+        System.out.println("\u001B[36m╚════════════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
 }

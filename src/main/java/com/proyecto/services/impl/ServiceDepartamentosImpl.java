@@ -6,6 +6,7 @@ import java.util.List;
 import com.proyecto.exceptiones.departamentosexceptions.DepartamentosNullException;
 import com.proyecto.repositories.RepositoryDepartamentos;
 import com.proyecto.repositories.models.Departamentos;
+import com.proyecto.repositories.models.Profesores;
 import com.proyecto.services.ServiceDepartamentos;
 
 public class ServiceDepartamentosImpl implements ServiceDepartamentos {
@@ -44,6 +45,11 @@ public class ServiceDepartamentosImpl implements ServiceDepartamentos {
     @Override
     public void eliminar(Departamentos departamentos) {
         this.crudRespositoryDepartamentos.eliminar(departamentos);
+    }
+
+    @Override
+    public Departamentos obtenerDepartamentoPorProfesor(Profesores profesor) {
+        return this.crudRespositoryDepartamentos.obtenerDepartamentoPorProfesor(profesor);
     }
     
 }

@@ -73,12 +73,17 @@ public class ViewCursos extends ViewMain{
 
     }
 
-    public static int mostrarMenu(){
-        System.out.println("###MENU CURSOS###");
-        System.out.println("1. Crear curso");
-        System.out.println("2. Listar cursos");
-        System.out.println("3. Eliminar curso");
-        System.out.println("4. Salir");
+    public static int mostrarMenu() {
+        System.out.println("\u001B[36m╔════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m║            MENU CURSOS             ║\u001B[0m");
+        System.out.println("\u001B[36m╠════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[36m║ 1. Crear curso                     ║\u001B[0m");
+        System.out.println("\u001B[36m║ 2. Listar cursos                   ║\u001B[0m");
+        System.out.println("\u001B[36m║ 3. Eliminar curso                  ║\u001B[0m");
+        System.out.println("\u001B[36m║ 4. Salir                           ║\u001B[0m");
+        System.out.println("\u001B[36m╚════════════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
 }

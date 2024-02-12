@@ -3,6 +3,7 @@ package com.proyecto.services;
 import java.util.List;
 
 import com.proyecto.exceptiones.alumnosexceptions.AlumnosNullException;
+import com.proyecto.repositories.models.Departamentos;
 import com.proyecto.repositories.models.Profesores;
 
 public interface ServiceProfesores {
@@ -16,5 +17,10 @@ public interface ServiceProfesores {
     void editar(Profesores profesores);
     
     void eliminar(Profesores profesores);
+
+    void asignarDepartamento(Profesores profesor, Departamentos departamento);
+
+    List<Profesores> obtenerProfesoresPorDepartamento(Departamentos departamento);
+
 }
     

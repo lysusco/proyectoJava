@@ -71,13 +71,11 @@ public class ViewPeriodos extends ViewMain{
 
     public static void crearPeriodo() {
         scanner.nextLine();
-        System.out.print("Ingrese el codigo del periodo: ");
-        String codPerido = scanner.nextLine();
         System.out.print("Año: ");
         String año = scanner.nextLine();
         System.out.print("Semestre: ");
         String semestre = scanner.nextLine();
-        Periodos periodo = new Periodos(codPerido, año, semestre);
+        Periodos periodo = new Periodos(año, semestre);
         servicePeriodos.crear(periodo);
     }
 
@@ -93,12 +91,17 @@ public class ViewPeriodos extends ViewMain{
     }
 
     public static int mostrarMenu(){
-        System.out.println("###MENU PERIODO###");
-        System.out.println("1. Crear periodo");
-        System.out.println("2. Buscar periodo");
-        System.out.println("3. Listar periodos");
-        System.out.println("4. Eliminar periodo");
-        System.out.println("5. Salir");
+        System.out.println("\u001B[36m╔═══════════════════════════════════╗");
+        System.out.println("║\u001B[35m          MENU DE PERIODO          \u001B[36m║");
+        System.out.println("╠═══════════════════════════════════╣");
+        System.out.println("║ \u001B[33m1. Crear periodo                  \u001B[36m║");
+        System.out.println("║ \u001B[33m2. Buscar periodo                 \u001B[36m║");
+        System.out.println("║ \u001B[33m3. Listar periodos                \u001B[36m║");
+        System.out.println("║ \u001B[33m4. Eliminar periodo               \u001B[36m║");
+        System.out.println("║ \u001B[33m5. Salir                          \u001B[36m║");
+        System.out.println("╚═══════════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
 }

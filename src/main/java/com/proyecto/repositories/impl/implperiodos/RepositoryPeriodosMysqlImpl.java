@@ -55,7 +55,7 @@ public class RepositoryPeriodosMysqlImpl implements RepositoryPeriodos {
 
     @Override
     public void crear(Periodos periodos) {
-        String sql = "INSERT INTO perido(codPeriodo, año, semestre) VALUES(?,?,?)";
+        String sql = "INSERT INTO periodo(codPeriodo, año, semestre) VALUES(?,?,?)";
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, periodos.getCodPeriodo());
@@ -69,13 +69,13 @@ public class RepositoryPeriodosMysqlImpl implements RepositoryPeriodos {
 
     @Override
     public void editar(Periodos periodos) {
-        String sql = "UPDATE periodo SET codPeriodo=?, año=?, semestre=? WHERE id=?";
+        String sql = "UPDATE periodo SET codPeriodo=?, año=?, semestre=? WHERE id_periodo=?";
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, periodos.getCodPeriodo());
             stmt.setString(2, periodos.getAño());
             stmt.setString(3, periodos.getSemestre());
-            stmt.setInt(4, periodos.getId());
+            stmt.setInt(4, periodos.getId_periodo());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -86,7 +86,7 @@ public class RepositoryPeriodosMysqlImpl implements RepositoryPeriodos {
     public void eliminar(Periodos periodos) {
         try(Connection conn = getConnection();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM periodo WHERE id=?")){
-            stmt.setInt(1, periodos.getId());
+            stmt.setInt(1, periodos.getId_periodo());
             stmt.executeUpdate();
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -95,8 +95,8 @@ public class RepositoryPeriodosMysqlImpl implements RepositoryPeriodos {
 
     private Periodos crearPeriodo(ResultSet rs) throws SQLException{
         Periodos perido = new Periodos();
-        perido.setId(rs.getInt("id"));
-        perido.setCodPeriodo(rs.getString("codPerido"));
+        perido.setId_periodo(rs.getInt("id_periodo"));
+        perido.setCodPeriodo(rs.getString("codPeriodo"));
         perido.setAño(rs.getString("año"));
         perido.setSemestre(rs.getString("semestre"));
         return perido;

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class Alumnos {
-    private int id;
+    private int id_alumno;
     private String tipoDoc;
     private String numDocumento;
     private String pNombre;

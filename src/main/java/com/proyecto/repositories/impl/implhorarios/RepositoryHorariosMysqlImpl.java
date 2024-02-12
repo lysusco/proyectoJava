@@ -61,7 +61,6 @@ public class RepositoryHorariosMysqlImpl implements RepositoryHorarios{
         stmt.setString(1, horarios.getDia());
         stmt.setString(2, horarios.getHoraIni());
         stmt.setString(3, horarios.getHoraFin());
-
         stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -70,13 +69,13 @@ public class RepositoryHorariosMysqlImpl implements RepositoryHorarios{
 
     @Override
     public void editar(Horarios horarios) {
-        String sql = "UPDATE horario SET dia=?, horaIni=?, horaFin=? WHERE id=?";
+        String sql = "UPDATE horario SET dia=?, horaIni=?, horaFin=? WHERE id_horario=?";
         try (Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
         stmt.setString(1, horarios.getDia());
         stmt.setString(2, horarios.getHoraIni());
         stmt.setString(3, horarios.getHoraFin());
-        stmt.setInt(4, horarios.getId());
+        stmt.setInt(4, horarios.getId_horario());
         stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -86,8 +85,8 @@ public class RepositoryHorariosMysqlImpl implements RepositoryHorarios{
     @Override
     public void eliminar(Horarios horarios) {
         try(Connection conn = getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM horario WHERE id=?")){
-            stmt.setInt(1, horarios.getId());
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM horario WHERE id_horario=?")){
+            stmt.setInt(1, horarios.getId_horario());
             stmt.executeUpdate();
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -96,7 +95,7 @@ public class RepositoryHorariosMysqlImpl implements RepositoryHorarios{
     
     private Horarios crearHorario(ResultSet rs) throws SQLException{
         Horarios horario = new Horarios();
-        horario.setId(rs.getInt("id"));
+        horario.setId_horario(rs.getInt("id_horario"));
         horario.setDia(rs.getString("dia"));
         horario.setHoraIni(rs.getString("horaIni"));
         horario.setHoraFin(rs.getString("horaFin"));

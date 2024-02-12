@@ -70,21 +70,46 @@ public class ViewMain{
                     break;
                 case 6:
                     ViewAsignaturas.startMenu();
+                    break; 
+                case 7:
+                    ViewPeriodos.startMenu();
+                    break; 
+                case 8:
+                    ViewSalones.startMenu();
+                    break; 
+                case 9:
+                    ViewTarifas.startMenu();
+                    break;
+                case 10:
+                    ViewProgramas.startMenu();
                     break;      
                 default:
                     break;
             }
             
-        } while (op >= 1 && op < 4);
+        } while (op >= 1 && op < 10);
     }
 
     public static int menuMain(){
-        System.out.println("### APLICACION MATRICULAS ###");
-        System.out.println("1. Modulo de Alumnos");
-        System.out.println("2. Modulo de Profesores");
-        System.out.println("3. Modulo de Cursos");
-        System.out.println("4. Modulo de Departamentos");
-        System.out.println("5. Salir");
+        System.out.println("\u001B[34m╔════════════════════════════╗");
+        System.out.println("║\u001B[30m   APLICACION MATRICULAS    \u001B[34m║");
+        System.out.println("╠════════════════════════════╣");
+        System.out.println("\u001B[33m║ 1. Modulo de Alumnos       ║");
+        System.out.println("║ 2. Modulo de Profesores    ║");
+        System.out.println("║ 3. Modulo de Cursos        ║");
+        System.out.println("║ 4. Modulo de Departamentos ║");
+        System.out.println("║ 5. Modulo de Horarios      ║");
+        System.out.println("║ 6. Modulo de Asignaturas   ║");
+        System.out.println("║ 7. Modulo de Periodos      ║");
+        System.out.println("║ 8. Modulo de Salones       ║");
+        System.out.println("║ 9. Modulo de Tarifas       ║");
+        System.out.println("║10. Modulo de Programas     ║");
+        System.out.println("║11. Salir                   ║");
+        System.out.println("╚════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
+    
+    
 }

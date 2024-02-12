@@ -50,15 +50,14 @@ public class RepositoryCursosMysqlImpl implements RepositoryCursos {
 
     @Override
     public void editar(Cursos cursos) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'editar'");
     }
 
     @Override
     public void eliminar(Cursos cursos) {
         try(Connection conn = getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM curso WHERE id=?")){
-            stmt.setInt(1, cursos.getId());
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM curso WHERE id_curso=?")){
+            stmt.setInt(1, cursos.getId_curso());
             stmt.executeUpdate();
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -86,7 +85,7 @@ public class RepositoryCursosMysqlImpl implements RepositoryCursos {
 
     private Cursos crearCurso(ResultSet rs) throws SQLException{
         Cursos curso = new Cursos();
-        curso.setId(rs.getInt("id"));
+        curso.setId_curso(rs.getInt("id_curso"));
         curso.setNomCurso(rs.getString("nomCurso"));
         curso.setGuiaCatedra(rs.getString("guiaCatedra"));;
         return curso;

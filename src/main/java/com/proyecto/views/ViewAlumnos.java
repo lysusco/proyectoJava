@@ -86,7 +86,7 @@ public class ViewAlumnos extends ViewMain {
         String ciudadResidencia = scanner.nextLine();
         System.out.print("Direccion: ");
         String direccion = scanner.nextLine();
-        System.out.print("Telefono");
+        System.out.print("Telefono: ");
         String telefono = scanner.nextLine();
         System.out.print("Fecha de nacimiento: ");
         String fNacimiento = scanner.nextLine();
@@ -106,15 +106,20 @@ public class ViewAlumnos extends ViewMain {
         }
 
     }
-
-    public static int mostrarMenu(){
-        System.out.println("###MENU ALUMNO###");
-        System.out.println("1. Crear alumno");
-        System.out.println("2. Buscar alumno");
-        System.out.println("3. Listar alumnos");
-        System.out.println("4. Eliminar alumno");
-        System.out.println("5. Salir");
+    
+    public static int mostrarMenu() {
+        System.out.println("\u001B[36m╔════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m║             MENU ALUMNO             ║\u001B[0m");
+        System.out.println("\u001B[36m╠════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[36m║ 1. Crear alumno                    ║\u001B[0m");
+        System.out.println("\u001B[36m║ 2. Buscar alumno                   ║\u001B[0m");
+        System.out.println("\u001B[36m║ 3. Listar alumnos                  ║\u001B[0m");
+        System.out.println("\u001B[36m║ 4. Eliminar alumno                 ║\u001B[0m");
+        System.out.println("\u001B[36m║ 5. Salir                           ║\u001B[0m");
+        System.out.println("\u001B[36m╚════════════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
 }
 

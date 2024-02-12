@@ -1,10 +1,13 @@
 package com.proyecto.views;
 
+import java.util.List;
+
 import com.proyecto.exceptiones.alumnosexceptions.AlumnosNullException;
+import com.proyecto.repositories.models.Departamentos;
 import com.proyecto.repositories.models.Profesores;
 
-public class ViewProfesores extends ViewMain{
-        public static void startMenu(){
+public class ViewProfesores extends ViewMain {
+    public static void startMenu() {
         int op = 0;
 
         do {
@@ -22,11 +25,21 @@ public class ViewProfesores extends ViewMain{
                     break;
                 case 4:
                     eliminarProfesores();
+                    break;
+                case 5:
+                    asignarDepartamento();
+                    break;
+                case 6:
+                    obtenerProfesoresPorDepartamento();
+                    break;
+                case 7:
+                    System.out.println("Saliendo del menú de profesores...");
+                    break;
                 default:
                     System.out.println("Opcion invalida.");
                     break;
             }
-        } while (op >= 1 && op < 5);
+        } while (op >= 1 && op < 7);
     }
 
     public static void listarProfesores() {
@@ -38,40 +51,61 @@ public class ViewProfesores extends ViewMain{
     }
 
     public static Profesores buscarGetProfesor() {
-        System.out.println("Busqueda de cliente "); 
-        scanner.nextLine();       
-        System.out.print("Documento: ");
+        System.out.println("Busqueda de Profesor ");
+
+        List<Profesores> profesores = serviceProfesores.listar();
+        if (profesores.isEmpty()) {
+            System.out.println("No hay profesores registrados.");
+            return null;
+        }
+
+        System.out.println("Lista de Profesores:");
+        for (Profesores profesor : profesores) {
+            System.out.println("Documento: " + profesor.getNumDocumento() + ", Nombre: " + profesor.getNombreCompleto());
+        }
+  
+        System.out.print("Ingrese el documento del profesor: ");
         String numDocumento = scanner.nextLine();
+    
 
         try {
             return serviceProfesores.buscar(numDocumento);
-
         } catch (AlumnosNullException e) {
-
             System.out.println(e.getMessage());
             return null;
         }
     }
-
-    public static void buscarProfesores(){
+    
+    public static void listarTodosLosProfesores() {
+        System.out.println("Lista de Todos los Profesores:");
+        List<Profesores> profesores = serviceProfesores.listar();
+        for (Profesores profesor : profesores) {
+            profesor.imprimirProfesor();
+            System.out.println();
+        }
+    }
+    
+    public static void buscarProfesores() {
+        listarTodosLosProfesores();
         System.out.println("Buscar profesor");
         scanner.nextLine();
         System.out.println("Documento: ");
         String numDocumento = scanner.nextLine();
-
-        try{
+    
+        try {
             Profesores profesor = serviceProfesores.buscar(numDocumento);
             System.out.println();
             profesor.imprimirProfesor();
-        }catch(AlumnosNullException e){
+        } catch (AlumnosNullException e) {
             System.out.println(e.getMessage());
         }
     }
+    
 
     public static void crearProfesores() {
         scanner.nextLine();
         System.out.print("Tipo de documento: ");
-        String tipoDocumento = scanner.nextLine();
+        String tipoDoc = scanner.nextLine();
         System.out.print("Numero de documento: ");
         String numDocumento = scanner.nextLine();
         System.out.print("Primer nombre: ");
@@ -92,7 +126,8 @@ public class ViewProfesores extends ViewMain{
         String fNacimiento = scanner.nextLine();
         System.out.print("Sexo: ");
         String sexo = scanner.nextLine();
-        Profesores profesor = new Profesores(tipoDocumento, numDocumento, pNombre, sNombre, pApellido, sApellido, ciudadResidencia, direccion, telefono, fNacimiento, sexo);
+        Profesores profesor = new Profesores(tipoDoc, numDocumento, pNombre, sNombre, pApellido, sApellido,
+                ciudadResidencia, direccion, telefono, fNacimiento, sexo);
         serviceProfesores.crear(profesor);
     }
 
@@ -107,13 +142,88 @@ public class ViewProfesores extends ViewMain{
 
     }
 
-    public static int mostrarMenu(){
-        System.out.println("###MENU PROFESORES###");
-        System.out.println("1. Crear profesor");
-        System.out.println("2. Buscar profesor");
-        System.out.println("3. Listar profesores");
-        System.out.println("4. Eliminar profesor");
-        System.out.println("5. Salir");
+    // Cambios
+
+    private static void mostrarListaDepartamentos() {
+        System.out.println("Lista de Departamentos:");
+        List<Departamentos> departamentos = serviceDepartamentos.listar();
+        for (Departamentos departamento : departamentos) {
+            System.out.println("ID: " + departamento.getId_departamento() + ", Nombre: " + departamento.getNomDepartamento());
+        }
+    }
+    
+    private static Departamentos buscarGetDepartamento() {
+        mostrarListaDepartamentos();
+        System.out.print("Ingrese el ID del departamento seleccionado: ");
+        int idDepartamento = scanner.nextInt();
+        scanner.nextLine();
+        List<Departamentos> departamentos = serviceDepartamentos.listar();
+        for (Departamentos departamento : departamentos) {
+            if (departamento.getId_departamento() == idDepartamento) {
+                return departamento;
+            }
+        }
+        System.out.println("El ID del departamento ingresado no es válido.");
+        return null;
+    }
+    
+    public static void asignarDepartamento() {
+        Departamentos departamento = buscarGetDepartamento();
+        if (departamento != null) {
+            Profesores profesor = buscarGetProfesor();
+            if (profesor != null) {
+                if (profesor.getId_departamento() != null) {
+                    System.out.println("El profesor ya está asignado a un departamento.");
+                    return;
+                } else {
+                    profesor.setId_departamento(departamento);
+                    serviceProfesores.asignarDepartamento(profesor, departamento);
+                    System.out.println("Departamento asignado al profesor con éxito");
+                }
+            } else {
+                System.out.println("No se encontró el profesor");
+            }
+        } else {
+            System.out.println("No se encontró el departamento");
+        }
+    }
+    
+    
+    
+    
+
+    public static void obtenerProfesoresPorDepartamento() {
+        Departamentos departamento = buscarGetDepartamento();
+        if (departamento != null) {
+            List<Profesores> profesores = serviceProfesores.obtenerProfesoresPorDepartamento(departamento);
+            if (!profesores.isEmpty()) {
+                System.out.println("Profesores en el departamento " + departamento.getNomDepartamento() + ":");
+                for (Profesores profesor : profesores) {
+                    profesor.imprimirProfesor();
+                }
+            } else {
+                System.out.println("No hay profesores en este departamento.");
+            }
+        } else {
+            System.out.println("No se encontró el departamento");
+        }
+    }
+
+    public static int mostrarMenu() {
+        System.out.println("\u001B[34m╔══════════════════════════════════╗");
+        System.out.println("║\u001B[30m         MENU PROFESORES          \u001B[34m║");
+        System.out.println("╠══════════════════════════════════╣");
+        System.out.println("\u001B[33m║ 1. Crear profesor                ║");
+        System.out.println("║ 2. Buscar profesor               ║");
+        System.out.println("║ 3. Listar profesores             ║");
+        System.out.println("║ 4. Eliminar profesor             ║");
+        System.out.println("║ 5. Asignar departamento          ║");
+        System.out.println("║ 6. Obtener profesores por depto  ║");
+        System.out.println("║ 7. Salir                         ║");
+        System.out.println("╚══════════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
+
 }

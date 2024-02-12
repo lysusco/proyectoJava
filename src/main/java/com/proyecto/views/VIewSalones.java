@@ -91,14 +91,19 @@ public class ViewSalones extends ViewMain{
 
     }
 
-    public static int mostrarMenu(){
-        System.out.println("###MENU SALON###");
-        System.out.println("1. Crear salon");
-        System.out.println("2. Buscar salon");
-        System.out.println("3. Listar salon");
-        System.out.println("4. Eliminar salon");
-        System.out.println("5. Salir");
+    public static int mostrarMenu() {
+        System.out.println("\u001B[36m╔════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m║            MENU SALON              ║\u001B[0m");
+        System.out.println("\u001B[36m╠════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[36m║ 1. Crear salon                    ║\u001B[0m");
+        System.out.println("\u001B[36m║ 2. Buscar salon                   ║\u001B[0m");
+        System.out.println("\u001B[36m║ 3. Listar salon                   ║\u001B[0m");
+        System.out.println("\u001B[36m║ 4. Eliminar salon                 ║\u001B[0m");
+        System.out.println("\u001B[36m║ 5. Salir                          ║\u001B[0m");
+        System.out.println("\u001B[36m╚════════════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
 
 }

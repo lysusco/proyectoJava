@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Horarios {
-    private int id;
+    private int id_horario;
     private String dia;
     private String horaIni;
     private String horaFin;

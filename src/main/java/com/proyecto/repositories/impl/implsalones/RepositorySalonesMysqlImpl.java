@@ -69,13 +69,13 @@ public class RepositorySalonesMysqlImpl implements RepositorySalones {
 
     @Override
     public void editar(Salones salon) {
-        String sql = "UPDATE salon SET referenciaSalon=?, cupoSalon=?, ubicacion=? WHERE id=?";
+        String sql = "UPDATE salon SET referenciaSalon=?, cupoSalon=?, ubicacion=? WHERE id_salon=?";
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, salon.getReferenciaSalon());
             stmt.setString(2, salon.getCupoSalon());
             stmt.setString(3, salon.getUbicacion());
-            stmt.setInt(4, salon.getId());
+            stmt.setInt(4, salon.getId_salon());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -85,8 +85,8 @@ public class RepositorySalonesMysqlImpl implements RepositorySalones {
     @Override
     public void eliminar(Salones salon) {
         try(Connection conn = getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM salon WHERE id=?")){
-            stmt.setInt(1, salon.getId());
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM salon WHERE id_salon=?")){
+            stmt.setInt(1, salon.getId_salon());
             stmt.executeUpdate();
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -95,7 +95,7 @@ public class RepositorySalonesMysqlImpl implements RepositorySalones {
 
     private Salones crearSalon(ResultSet rs) throws SQLException{
         Salones salon = new Salones();
-        salon.setId(rs.getInt("id"));
+        salon.setId_salon(rs.getInt("id_salon"));
         salon.setReferenciaSalon(rs.getString("referenciaSalon"));
         salon.setCupoSalon(rs.getString("cupoSalon"));
         salon.setUbicacion(rs.getString("ubicacion"));

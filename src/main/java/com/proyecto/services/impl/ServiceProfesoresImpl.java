@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.proyecto.exceptiones.alumnosexceptions.AlumnosNullException;
 import com.proyecto.repositories.RepositoryProfesores;
+import com.proyecto.repositories.models.Departamentos;
 import com.proyecto.repositories.models.Profesores;
 import com.proyecto.services.ServiceProfesores;
 
@@ -43,6 +44,16 @@ public class ServiceProfesoresImpl implements ServiceProfesores {
     @Override
     public void eliminar(Profesores profesores) {
         this.crudRepositoryProfesores.eliminar(profesores);
+    }
+
+    @Override
+    public void asignarDepartamento(Profesores profesor, Departamentos departamento) {
+        this.crudRepositoryProfesores.asignarDepartamento(profesor, departamento);
+    }
+    
+    @Override
+    public List<Profesores> obtenerProfesoresPorDepartamento(Departamentos departamento) {
+        return this.crudRepositoryProfesores.obtenerProfesoresPorDepartamento(departamento);
     }
     
 }

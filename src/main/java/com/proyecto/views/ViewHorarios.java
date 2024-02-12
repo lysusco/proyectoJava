@@ -93,13 +93,18 @@ public class ViewHorarios extends ViewMain {
 
     }
 
-    public static int mostrarMenu(){
-        System.out.println("###MENU HORARIO###");
-        System.out.println("1. Crear horario");
-        System.out.println("2. Buscar horario");
-        System.out.println("3. Listar horario");
-        System.out.println("4. Eliminar horario");
-        System.out.println("5. Salir");
+    public static int mostrarMenu() {
+        System.out.println("\u001B[36m╔════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m║            MENU HORARIO            ║\u001B[0m");
+        System.out.println("\u001B[36m╠════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[36m║ 1. Crear horario                  ║\u001B[0m");
+        System.out.println("\u001B[36m║ 2. Buscar horario                 ║\u001B[0m");
+        System.out.println("\u001B[36m║ 3. Listar horario                 ║\u001B[0m");
+        System.out.println("\u001B[36m║ 4. Eliminar horario               ║\u001B[0m");
+        System.out.println("\u001B[36m║ 5. Salir                          ║\u001B[0m");
+        System.out.println("\u001B[36m╚════════════════════════════════════╝\u001B[0m");
+        System.out.print("\u001B[33m --> \u001B[0m");
         return scanner.nextInt();
     }
+    
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Salones {
-    private int id;
+    private int id_salon;
     private String referenciaSalon;
     private String cupoSalon;
     private String ubicacion;

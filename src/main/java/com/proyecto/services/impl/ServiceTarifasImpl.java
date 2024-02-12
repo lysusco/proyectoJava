@@ -1,8 +1,11 @@
 package com.proyecto.services.impl;
 
+
 import java.util.List;
 
 import com.proyecto.repositories.RepositoryTarifas;
+import com.proyecto.repositories.models.Periodos;
+import com.proyecto.repositories.models.Programas;
 import com.proyecto.repositories.models.Tarifas;
 import com.proyecto.services.ServiceTarifas;
 
@@ -15,8 +18,8 @@ public class ServiceTarifasImpl implements ServiceTarifas{
     }
 
     @Override
-    public List<Tarifas> listar() {
-        return this.crudRepositoryTarifas.listar();
+    public List<Tarifas> listarConPeriodos() {
+        return this.crudRepositoryTarifas.listarConPeriodos();
     }
 
     @Override
@@ -32,6 +35,16 @@ public class ServiceTarifasImpl implements ServiceTarifas{
     @Override
     public void eliminar(Tarifas tarifas) {
         this.crudRepositoryTarifas.eliminar(tarifas);
+    }
+
+    @Override
+    public List<Tarifas> buscarPorPeriodo(Periodos periodo) {
+        return this.crudRepositoryTarifas.buscarPorPeriodo(periodo);
+    }
+
+    @Override
+    public List<Tarifas> buscarPorPrograma(Programas programa) {
+        return this.crudRepositoryTarifas.buscarPorPrograma(programa);
     }
     
 }

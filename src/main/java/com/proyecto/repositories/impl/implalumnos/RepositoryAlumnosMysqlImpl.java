@@ -76,7 +76,7 @@ public class RepositoryAlumnosMysqlImpl implements RepositoryAlumnos{
 
     @Override
     public void editar(Alumnos alumno) {
-        String sql = "UPDATE alumno SET tipoDoc=?, pNombre=?, sNombre=?, pApellido=?, sApellido=?, ciudadResidencia=?, direccion=?, telefono=?, fNacimiento=?, sexo=? WHERE id=?";
+        String sql = "UPDATE alumno SET tipoDoc=?, pNombre=?, sNombre=?, pApellido=?, sApellido=?, ciudadResidencia=?, direccion=?, telefono=?, fNacimiento=?, sexo=? WHERE id_alumno=?";
         try (Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
         stmt.setString(1, alumno.getTipoDoc());
@@ -89,7 +89,7 @@ public class RepositoryAlumnosMysqlImpl implements RepositoryAlumnos{
         stmt.setString(8, alumno.getTelefono());
         stmt.setString(9, alumno.getFNacimiento());
         stmt.setString(10, alumno.getSexo());
-        stmt.setInt(11, alumno.getId());
+        stmt.setInt(11, alumno.getId_alumno());
         stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -99,8 +99,8 @@ public class RepositoryAlumnosMysqlImpl implements RepositoryAlumnos{
     @Override
     public void eliminar(Alumnos alumno) {
         try(Connection conn = getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM alumno WHERE id=?")){
-            stmt.setInt(1, alumno.getId());
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM alumno WHERE id_alumno=?")){
+            stmt.setInt(1, alumno.getId_alumno());
             stmt.executeUpdate();
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -109,7 +109,7 @@ public class RepositoryAlumnosMysqlImpl implements RepositoryAlumnos{
 
     private Alumnos crearAlumno(ResultSet rs) throws SQLException{
         Alumnos alumno = new Alumnos();
-        alumno.setId(rs.getInt("id"));
+        alumno.setId_alumno(rs.getInt("id_alumno"));
         alumno.setTipoDoc(rs.getString("tipoDoc"));
         alumno.setNumDocumento(rs.getString("numDocumento"));
         alumno.setPNombre(rs.getString("pNombre"));

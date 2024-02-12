@@ -12,7 +12,7 @@ enum Nivel {
 @NoArgsConstructor
 
 public class Programas {
-    private int id;
+    private int id_programa;
     private String nomPrograma;
     private String nivel;
 
@@ -26,4 +26,17 @@ public class Programas {
         System.out.println("Nivel del programa: "+this.getNivel());
     }
 
+
+    public String getNombreTarifaPro(){
+       return nomPrograma;
+    }
+
+    public String generandoCodigo() {
+        if (this.id_programa != 0) {
+            return "PR" + this.id_programa;
+        } else {
+            return "Programa no asignado";
+        }
+    }
+    
 }

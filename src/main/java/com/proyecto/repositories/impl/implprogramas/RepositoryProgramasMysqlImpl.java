@@ -68,12 +68,12 @@ public class RepositoryProgramasMysqlImpl implements RepositoryProgramas {
 
     @Override
     public void editar(Programas programas) {
-        String sql = "UPDATE programa SET nomPrograma=?, nivel=? WHERE id=?";
+        String sql = "UPDATE programa SET nomPrograma=?, nivel=? WHERE id_programa=?";
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, programas.getNomPrograma());
             stmt.setString(2, programas.getNivel());
-            stmt.setInt(3, programas.getId());
+            stmt.setInt(3, programas.getId_programa());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -84,7 +84,7 @@ public class RepositoryProgramasMysqlImpl implements RepositoryProgramas {
     public void eliminar(Programas programas) {
         try(Connection conn = getConnection();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM programa WHERE id=?")){
-            stmt.setInt(1, programas.getId());
+            stmt.setInt(1, programas.getId_programa());
             stmt.executeUpdate();
         } catch(SQLException throwables){
             throwables.printStackTrace();
@@ -93,7 +93,7 @@ public class RepositoryProgramasMysqlImpl implements RepositoryProgramas {
 
         private Programas crearPrograma(ResultSet rs) throws SQLException{
         Programas programa = new Programas();
-        programa.setId(rs.getInt("id"));
+        programa.setId_programa(rs.getInt("id_programa"));
         programa.setNomPrograma(rs.getString("nomPrograma"));
         programa.setNivel(rs.getString("nivel"));
         return programa;
