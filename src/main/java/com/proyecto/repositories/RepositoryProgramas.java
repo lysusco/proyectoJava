@@ -8,7 +8,7 @@ public interface RepositoryProgramas {
 
     List<Programas> listar();
 
-    Programas buscar();
+    Programas buscar(String nomPrograma);
     
     void crear(Programas programas);
     

@@ -46,8 +46,63 @@ CREATE TABLE curso (
     INDEX idx_curso_nomCurso (nomCurso)
 );
 
-DROP TABLE alumno;
+CREATE TABLE departamento (
+    id INT AUTO_INCREMENT,
+    nomDepartamento VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id),
+    INDEX idx_departamento_nomDepartamento (nomDepartamento)
+);
 
-DROP TABLE profesor;
+
+CREATE TABLE asignatura(
+    id INT AUTO_INCREMENT,
+    nomAsignatura VARCHAR(255) NOT NULL,
+    cupoAsignatrua VARCHAR(255) NOT NULL,
+    creditos VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id),
+    INDEX idx_asignatura_nomAsignatura(nomAsignatura)
+);
+
+CREATE TABLE horario(
+    id INT AUTO_INCREMENT,
+    dia VARCHAR(255),
+    horaIni VARCHAR(255),
+    horaFin VARCHAR(255),
+    PRIMARY KEY(id),
+    INDEX idx_horario_dia(dia)
+);
+
+CREATE TABLE periodo(
+    id INT AUTO_INCREMENT,
+    codPeriodo VARCHAR(255),
+    año VARCHAR(255),
+    semestre VARCHAR(255),
+    PRIMARY KEY(id),
+    INDEX idx_periodo_codPeriodo(codPeriodo)
+);
+
+CREATE TABLE programa(
+    id INT AUTO_INCREMENT,
+    nomPrograma VARCHAR(255),
+    nivel VARCHAR(255),
+    PRIMARY KEY(id),
+    INDEX idx_programa_nomPrograma(nomPrograma)
+);
+
+CREATE TABLE salon(
+    id INT AUTO_INCREMENT,
+    referenciaSalon VARCHAR(255),
+    cupoSalon VARCHAR(255),
+    ubicacion VARCHAR(255),
+    PRIMARY KEY(id),
+    INDEX idx_salon_referenciaSalon(referenciaSalon)
+);
+
+CREATE TABLE tarifa(
+    id INT AUTO_INCREMENT,
+    valorCredito VARCHAR(255),
+    PRIMARY KEY(id),
+    INDEX idx_tarifa_valorCredito(valorCredito)
+);
 
 SELECT * FROM alumno;

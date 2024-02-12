@@ -8,12 +8,12 @@ public interface RepositorySalones {
 
     List<Salones> listar();
 
-    Salones buscar();
+    Salones buscar(String referenciaSalon);
     
-    void crear(Salones programas);
+    void crear(Salones salon);
     
-    void editar(Salones programas);
+    void editar(Salones salon);
     
-    void eliminar(Salones programas);
+    void eliminar(Salones salon);
     
 }

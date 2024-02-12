@@ -12,12 +12,18 @@ enum Nivel {
 @NoArgsConstructor
 
 public class Programas {
+    private int id;
     private String nomPrograma;
-    private Nivel nivel;
+    private String nivel;
 
-    public Programas(String nomPrograma, Nivel nivel) {
+    public Programas(String nomPrograma, String nivel) {
         this.nomPrograma = nomPrograma;
         this.nivel = nivel;
+    }
+
+    public void imprimirPrograma(){
+        System.out.println("Nombre del programa: "+this.getNomPrograma());
+        System.out.println("Nivel del programa: "+this.getNivel());
     }
 
 }

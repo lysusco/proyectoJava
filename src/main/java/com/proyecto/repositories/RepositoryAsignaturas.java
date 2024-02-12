@@ -8,7 +8,7 @@ public interface RepositoryAsignaturas {
 
     List<Asignaturas> listar();
 
-    Asignaturas buscar();
+    Asignaturas buscar(String nomAsignatura);
     
     void crear(Asignaturas asignaturas);
     

@@ -7,14 +7,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Salones {
+    private int id;
     private String referenciaSalon;
-    private int cupoSalon;
+    private String cupoSalon;
     private String ubicacion;
 
-    public Salones(String referenciaSalon, int cupoSalon, String ubicacion) {
+    public Salones(String referenciaSalon, String cupoSalon, String ubicacion) {
         this.referenciaSalon = referenciaSalon;
         this.cupoSalon = cupoSalon;
         this.ubicacion = ubicacion;
+    }
+
+    public void imprimirSalon(){
+        System.out.println("Referencia salon: "+this.getReferenciaSalon()+" Cupo: "+this.getCupoSalon()+" Ubicacion: "+this.getUbicacion());
     }
 
 }

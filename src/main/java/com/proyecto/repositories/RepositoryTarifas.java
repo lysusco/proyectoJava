@@ -7,8 +7,6 @@ import com.proyecto.repositories.models.Tarifas;
 public interface RepositoryTarifas {
 
     List<Tarifas> listar();
-
-    Tarifas buscar();
     
     void crear(Tarifas tarifas);
     

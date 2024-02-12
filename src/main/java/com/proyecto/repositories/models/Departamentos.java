@@ -7,9 +7,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Departamentos {
+    private int id;
     private String nomDepartamento;
 
     public Departamentos(String nomDepartamento) {
         this.nomDepartamento = nomDepartamento;
+    }
+
+    public void imprimirDepartamento(){
+        System.out.println("Nombre del departamento: "+this.getNomDepartamento());
     }
 }

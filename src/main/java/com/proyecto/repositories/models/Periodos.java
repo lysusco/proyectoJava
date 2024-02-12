@@ -1,6 +1,5 @@
 package com.proyecto.repositories.models;
 
-import java.time.Year;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,14 +7,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Periodos {
+    private int id;
     private String codPeriodo;
-    private Year año;
-    private int semestre;
+    private String año;
+    private String semestre;
     
-    public Periodos(String codPeriodo, Year año, int semestre) {
+    public Periodos(String codPeriodo, String año, String semestre) {
         this.codPeriodo = codPeriodo;
         this.año = año;
         this.semestre = semestre;
+    }
+
+    public void imprimirPeriodo(){
+        System.out.println("Codigo del periodo: "+this.getCodPeriodo()+" año: "+this.getAño()+" semestre: "+this.getSemestre());
     }
     
 }

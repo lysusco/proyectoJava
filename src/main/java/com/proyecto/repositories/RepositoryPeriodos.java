@@ -8,7 +8,7 @@ public interface RepositoryPeriodos {
 
     List<Periodos> listar();
 
-    Periodos buscar();
+    Periodos buscar(String codPeriodo);
     
     void crear(Periodos periodos);
     

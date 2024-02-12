@@ -10,7 +10,7 @@ public interface RepositoryDepartamentos{
 
     List<Departamentos> listar();
 
-    Departamentos buscar();
+    Departamentos buscar(String nomDepartamento);
     
     void crear(Departamentos departamentos);
     

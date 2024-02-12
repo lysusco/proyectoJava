@@ -8,7 +8,7 @@ public interface RepositoryHorarios {
 
     List<Horarios> listar();
 
-    Horarios buscar();
+    Horarios buscar(String dia);
     
     void crear(Horarios horarios);
     
