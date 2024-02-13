@@ -28,7 +28,7 @@
 
 ---
 
-#### Creacion de las tablas(SIN EL PRIMER PUNTO NI EL SEGUNDO PUNTO):
+#### Creacion de las tabla:
 
 ```sql
     CREATE TABLE departamento (
@@ -183,7 +183,7 @@ CREATE TABLE matricula(
 
 ---
 
-#### Poblar la base de datos(SIN EL PRIMER PUNTO NI EL SEGUNDO PUNTO):
+#### Poblar la base de datos:
 
 ```sql
     INSERT INTO departamento (nomDepartamento) 
