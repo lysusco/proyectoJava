@@ -1,4 +1,4 @@
-###PROYECTO JAVA
+# PROYECTO JAVA
 
 
 ![mio_diagrama_paquetes](https://github.com/lysusco/proyectoJava/assets/127136702/6f747a98-3758-4f44-98a5-ebd457c77a9e)
